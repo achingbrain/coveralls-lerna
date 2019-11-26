@@ -10,7 +10,7 @@
     "test": "mocha",
     "lint": "standard",
     "coverage": "nyc --reporter=lcov npm test",
-    "coveralls": "npm coverage && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls"
   },
   "keywords": [
     "coveralls"
