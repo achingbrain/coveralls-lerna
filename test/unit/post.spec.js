@@ -77,9 +77,9 @@ describe('POST Data to Coveralls', () => {
         method: 'post',
         form: {
           json: JSON.stringify({
-            repo_token: repoToken,
             source_files: sourceFiles,
-            git
+            git,
+            repo_token: repoToken
           })
         },
         json: true
