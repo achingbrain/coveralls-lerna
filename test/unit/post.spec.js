@@ -52,7 +52,7 @@ describe('POST Data to Coveralls', () => {
       process.env.COVERALLS_REPO_TOKEN = repoToken
 
       postWithMocks = proxyquire('../../lib/post', {
-        bent: sinon.stub().returns(send),
+        'request-promise-native': send,
         './util/git': {
           getGitInfo: sinon.stub().returns(git)
         },
@@ -73,47 +73,33 @@ describe('POST Data to Coveralls', () => {
       })
 
       const expectedPostObject = {
-        repo_token: repoToken,
-        service_name: serviceName,
-        service_job_id: serviceJobId,
-        source_files: sourceFiles,
-        git
+        url: 'https://coveralls.io/api/v1/jobs',
+        method: 'post',
+        form: {
+          json: JSON.stringify({
+            repo_token: repoToken,
+            source_files: sourceFiles,
+            git
+          })
+        },
+        json: true
       }
 
       postWithMocks(sourceFiles)
 
       expect(send).to.have.callCount(1)
-      expect(send).to.be.deep.calledWith('/api/v1/jobs', expectedPostObject)
+      expect(send).to.be.deep.calledWith(expectedPostObject)
     })
-    /*
-    describe('POST request callback', () => {
-      let callback
 
-      beforeEach(() => {
-        [, callback] = request.post.firstCall.args
+    it('should throw an error if the request was unsuccessful', () => {
+      const error = chance.string()
+
+      send.returns({
+        error: true,
+        message: error
       })
 
-      it('should throw an error if the request was unsuccessful', () => {
-        const error = chance.string()
-        const errorCallback = () => {
-          callback(error)
-        }
-
-        expect(errorCallback).to.throw(`Error sending data to Coveralls: ${error}`)
-      })
-
-      it('should not throw an error if the request was successful', () => {
-        const successCallback = () => {
-          callback(undefined, {
-            body: JSON.stringify({
-              url: chance.word()
-            })
-          })
-        }
-
-        expect(successCallback).to.not.throw(Error)
-      })
+      expect(postWithMocks(sourceFiles)).to.eventually.rejectedWith(error)
     })
-    */
   })
 })
