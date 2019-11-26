@@ -1,0 +1,4 @@
+--recursive
+--reporter spec
+--ui bdd
+--require ./test/util/node-env-test.js

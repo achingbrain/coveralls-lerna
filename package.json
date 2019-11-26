@@ -1,0 +1,41 @@
+{
+  "name": "coveralls-lerna",
+  "version": "0.0.1",
+  "description": "Collates coverage data from lerna monorepos and sends it to Coveralls",
+  "main": "index.js",
+  "bin": {
+    "coveralls-lerna": "./bin/index.js"
+  },
+  "scripts": {
+    "coverage": "nyc --reporter=lcov npm test",
+    "test": "mocha",
+    "lint": "standard"
+  },
+  "keywords": [
+    "coveralls"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:achingbrain/coveralls-lerna.git"
+  },
+  "author": "Alex Potsides <alex@achingbrain.net>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^7.1.1",
+    "chance": "^1.0.4",
+    "eslint": "^3.3.1",
+    "lodash": "^4.15.0",
+    "mocha": "^3.0.0",
+    "nyc": "^8.1.0",
+    "proxyquire": "^1.7.10",
+    "sinon": "^1.17.5",
+    "sinon-chai": "^2.8.0",
+    "standard": "^14.3.1"
+  },
+  "dependencies": {
+    "bent": "^7.0.3",
+    "fs-extra": "^8.1.0",
+    "xml2js": "^0.4.17"
+  }
+}
