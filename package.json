@@ -7,9 +7,10 @@
     "coveralls-lerna": "./bin/index.js"
   },
   "scripts": {
-    "coverage": "nyc --reporter=lcov npm test",
     "test": "mocha",
-    "lint": "standard"
+    "lint": "standard",
+    "coverage": "nyc --reporter=lcov npm test",
+    "coveralls": "npm coverage && cat ./coverage/lcov.info | coveralls"
   },
   "keywords": [
     "coveralls"
@@ -24,6 +25,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^7.1.1",
     "chance": "^1.0.4",
+    "coveralls": "^3.0.9",
     "eslint": "^3.3.1",
     "lodash": "^4.15.0",
     "mocha": "^3.0.0",
