@@ -13,7 +13,7 @@ Based on the most excellent [@sourceallies/coveralls-merge](https://github.com/s
 ## Installation
 
 ``` bash
-npm coveralls-lerna --save-dev
+npm i coveralls-lerna --save-dev
 ```
 
 ## Usage
