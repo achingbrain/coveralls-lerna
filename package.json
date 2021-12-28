@@ -1,6 +1,6 @@
 {
   "name": "coveralls-lerna",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Collates coverage data from lerna monorepos and sends it to Coveralls",
   "main": "index.js",
   "bin": {
